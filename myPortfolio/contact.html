@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-size: larger;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        input,
+        textarea {
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        input[type="number"] {
+            width: 435px;
+        }
+
+        center {
+            padding: 100px 0;
+        }
+
+        button {
+            font-size: large;
+            padding: 8px 16px 8px 16px;
+            border-radius: 8px;
+        }
+
+
+
+        .nav-bar {
+            width: 100%;
+            height: 75px;
+            background-color: rgb(32, 32, 107);
+            position: fixed;
+        }
+
+        .nav-bar-left {
+            display: inline-block;
+            width: 50%;
+            padding: 25px 30px;
+            font-size: x-large;
+        }
+
+        .nav-bar-right {
+            padding: 25px 0 25px 20%;
+        }
+
+        .nav-bar a {
+            padding: 20px;
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="nav-bar">
+        <span class="nav-bar-left">Home</span>
+        <span class="nav-bar-right">
+            <a href="gallery.html">Favourite Images</a>
+            <a href="video.html">Favourite Videos</a>
+        </span>
+    </nav>
+
+    <center>
+        <form>
+            <div><input type="text" placeholder="Name" size="50"></div>
+            <br>
+            <div><input type="number" placeholder="Phone Number" size="50" required></div>
+            <br>
+            <div><input type="email" placeholder="Email" size="50" required></div>
+            <br>
+            <div><textarea name="review" title="Reviews" placeholder="Reviews" rows="8" cols="48"></textarea></div>
+            <br>
+            <div>
+                <button type="submit">Submit</button>
+            </div>
+            <br>
+        </form>
+    </center>
+</body>
+
+</html>

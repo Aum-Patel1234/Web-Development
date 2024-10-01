@@ -1,0 +1,44 @@
+body{
+    margin: 0;padding: 0;
+}
+
+.game-background{
+    height: 100vh;
+    background-color: aqua;
+}
+.raceTrack-background{
+    position: relative;
+    height: 100vh;
+    background-color: red;
+    width: 55%;
+    background-image: url('https://generalistprogrammer.com/wp-content/uploads/2020/01/unity-2d-racing-game-tutorial-scrolling-background.gif');
+}
+
+.car1{
+    height: 250px;
+    width: 150px;
+    background-image: url('assets/car1.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
+    /* background-color: cyan; */
+}
+.car2{
+    height: 250px;
+    width: 150px;
+    background-image: url('assets/car2.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
+    /* background-color: cyan; */
+    margin: 0 160px;
+}
+.car3{
+    height: 250px;
+    width: 150px;
+    background-image: url('assets/car3.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
+    /* background-color: cyan; */
+}

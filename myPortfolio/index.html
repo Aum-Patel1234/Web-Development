@@ -5,16 +5,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PortFolio</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <h1>
-        <center>My PortFolio</center>
-    </h1>
+    <nav class="nav-bar">
+        <span class="nav-bar-left">Home</span>
+        <span class="nav-bar-right">
+            <a href="gallery.html">Favourite Images</a>
+            <a href="video.html">Favourite Videos</a>
+        </span>
+    </nav>
+
+    <table class="section1">
+        <td class="left p20-left">
+            <h1>Aum Jayraj Patel</h1>
+            <p>
+                Hello, I am a dedicated 3rd-year student pursuing a degree in Artificial Intelligence and Data Science
+                at Vivekanand Education Society’s Institute of Technology. With a strong passion for technology,
+                particularly in Machine Learning, I have honed my skills through hands-on projects in Flutter, building
+                a solid foundation in Android Development. As a proactive problem solver and enthusiastic learner, I am
+                always eager to take on new challenges and expand my expertise to stay at the forefront of technological
+                advancements.
+            </p>
+        </td>
+        <td class="right">
+            <img class="personal-img" src="assets/images/image.png" alt="" width="400px">
+        </td>
+    </table>
 
     <hr>
 
-    <h2>Personal Information</h2>
+    <h2 class="p20-left">Personal Information</h2>
     <ul>
         <li>
             <h4>Name: Aum Jayraj Patel</h4>
@@ -28,82 +50,54 @@
     </ul>
 
     <hr>
-
-    <h2>Brief Introduction</h2>
-    <p>
-        Hello, I’m Aum Patel, currently a 3rd Year student pursuing a degree in <u><b>Artificial
-                Intelligence and Data Science</b></u> at <u><b>Vivekanand Education Society’s Institute of
-                Technology</b></u>. I have a strong passion for technology, particularly in <b>Machine
-            Learning</b>. My academic journey has been complemented by hands-on experiences
-        through various projects in Flutter, where I’ve developed a solid foundation in
-        Android Development.
-    </p>
-    <p>
-        In addition to my technical skills, I am an enthusiastic learner and a proactive
-        problem solver, always eager to take on new challenges. I’m excited about the
-        opportunity to learn Web Development.
-    </p>
-    <p>
-        Hobbies - Playing Cricket, Football, Solving DSA problems, <strong>Chess</strong>
-    </p>
+    <h2 class="p20-left">Experience</h2>
+    <ul>
+        <li>Developed robust Flutter applications with a focus on responsive UI and efficient state management.</li>
+        <li>Implemented <strong>flutter_bloc</strong> for scalable and maintainable state management.</li>
+        <li>Integrated Firebase for real-time chat, authentication, and cloud storage.</li>
+        <li>Utilized <strong>Sqflite</strong> for local database management in offline-first apps.</li>
+        <li>Extended app functionality through APIs and third-party libraries.</li>
+    </ul>
 
     <hr>
 
-    <h2>Pages</h2>
-        <a href="gallery.html"><button>Favourite images</button></a>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="video.html"><button>Video</button></a>
-    <hr>
-
-    <h2>Skill Set</h2>
+    <h2 class="p20-left">Skill Set</h2>
     <ul>
         <li>
             <b>Programming Languages</b>: Java, C, Dart, Python
         </li>
         <li>
-            <b>Frameworks & Tools</b>: Flutter
+            <b>Frameworks & Tools</b>: Flutter , Git
         </li>
         <li>
             <b>Technologies</b>: Android Development
         </li>
         <li>
-            <b>Soft Skills</b>: Problem-solving, Teamwork, Communication, Adaptability
+            <b>Hobbies </b>: Playing Chess, Cricket
         </li>
     </ul>
 
     <hr>
 
-    <center>
-        <h2>Contact Me</h2>
-    </center>
-    <div>
+    <div class="bottom">
         <center>
-            <form>
-                <div><input type="text" placeholder="Name" size="50"></div>
-                <br>
-                <div><input type="number" placeholder="Phone Number" width="50" required></div>
-                <br>
-                <div><input type="email" placeholder="Email" size="50" required></div>
-                <br>
-                <div><textarea name="review" title="Reviews" placeholder="Reviews" rows="8" cols="50"></textarea></div>
-                <br>
-                <div>
-                    <button type="submit">Submit</button>
-                </div>
-                <br>
-            </form>
-        </center>
-        <center>
-            <a href="https://github.com/Aum-Patel1234"><img src="/images/github-logo.png" width="30"
-                    alt="github"></a>&nbsp&nbsp&nbsp&nbsp&nbsp
-            <a href="https://leetcode.com/u/Aum-Jayraj-Patel/"><img
-                    src="/images/icons8-level-up-your-coding-skills-and-quickly-land-a-job-24.png" width="30"
-                    alt="leetcode"></a>&nbsp&nbsp&nbsp&nbsp&nbsp
-            <a href="https://www.linkedin.com/in/aum-patel-48025a2bb"><img src="/images/LI-In-Bug.png" width="30"
-                    alt="linkedin"></a>
+            <a href="https://github.com/Aum-Patel1234">
+                <img src="assets/images/github-mark-white.png" width="30" alt="github">
+            </a>
+            <a href="https://leetcode.com/u/Aum-Jayraj-Patel/">
+                <img src="assets/images/icons8-level-up-your-coding-skills-and-quickly-land-a-job-24.png" width="30"
+                    alt="leetcode">
+            </a>
+            <a href="https://www.linkedin.com/in/aum-patel-48025a2bb">
+                <img src="assets/images/LI-In-Bug.png" width="30" alt="linkedin">
+            </a>
         </center>
     </div>
 
+
+    <div class="contact-me">
+        <a href="contact.html">Contact me</a>
+    </div>
 
 </body>
 
