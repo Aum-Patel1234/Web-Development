@@ -13,7 +13,8 @@ body {
 
 /* Navbar */
 .nav-bar-box {
-    padding: 0 24px;
+    padding-right: 24px;
+    padding-left: 12px;
     box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.06), 0px 1px 3px 0px rgba(0, 0, 0, 0.10);
     position: fixed;
     top: 0;
@@ -43,18 +44,21 @@ body {
     color: #6B7280;
 }
 .nav-bar-end{
-    width: 176px;
     display: flex;
     font-size: 16px;
 }
 
 .sign-in{
-    padding-right: 20px;
     text-decoration: none;
     border: none;
     background-color: white;
     font-weight: 500;
     font-size: 16px;
+    margin: 0 20px;
+}
+.sign-in:hover,.sign-up:hover,select:hover,.left-box-btn-livedemo:hover,.left-box-btn-getstarted:hover,.nav-bar-center-pricing:hover,.nav-bar-center-Docs:hover{
+    cursor: pointer;
+    transform: scale(1.1);
 }
 .sign-up{
     width: 92px;
@@ -65,6 +69,7 @@ body {
     border: none;
     font-weight: 500;
     font-size: 16px;
+    margin: 5px;
 }
 
 /* main body */
@@ -168,21 +173,6 @@ body {
     color: #4F46E5;
 }
 
-@media only screen and (max-width: 762px){
-    .companies-info-card{
-        flex-direction: column;
-        width: 376px;
-        height: 436px;  
-    }
-    .card-status-cards{
-        flex-direction: column;
-    }
-    .card-status-cards div{
-        width: 344px;
-        height: 100px;
-    }
-}
-
 /* card 3 */
 .card-status{
     margin: 20px 0;
@@ -208,4 +198,56 @@ body {
 }
 .card-status-cards p,h1{
     margin: 0;
+}
+/* trusted card (card1) */
+
+.trusted{
+    height: 410px;
+    padding: 64px 32px 64px 32px;
+    gap: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.trusted-cards{
+    width: 1216px;
+    height: 226px;
+    gap: 2px;
+    opacity: 0px;
+}
+.trusted-cards div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.trusted-cards div img{
+    margin: 0;
+    width: 33%;
+    padding: 32px 100px;
+    margin: 5px;
+    background-color: #F9FAFB;
+}
+
+@media only screen and (max-width: 762px){
+    .companies-info-card{
+        flex-direction: column;
+        width: 376px;
+        height: 436px;  
+    }
+    .card-status-cards{
+        flex-direction: column;
+    }
+    .card-status-cards div{
+        width: 344px;
+        height: 100px;
+    }
+    .trusted-cards{
+        width: 344px;
+        height: 322px; 
+        gap: 2px;
+    }
+    .trusted-cards div{
+        flex-direction: column;
+    }
 }

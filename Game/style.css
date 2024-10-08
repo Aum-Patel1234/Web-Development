@@ -1,11 +1,13 @@
 body{
-    margin: 0;padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 .game-background{
     height: 100vh;
     background-color: aqua;
 }
+
 .raceTrack-background{
     position: relative;
     height: 100vh;
@@ -14,31 +16,71 @@ body{
     background-image: url('https://generalistprogrammer.com/wp-content/uploads/2020/01/unity-2d-racing-game-tutorial-scrolling-background.gif');
 }
 
+.car1, .car2, .car3{
+    height: 250px;
+    width: 150px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    bottom: 0;
+    animation: drive 5s linear infinite;
+}
+
 .car1{
-    height: 250px;
-    width: 150px;
     background-image: url('assets/car1.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    display: inline-block;
-    /* background-color: cyan; */
+    left: 10%;
+    animation-delay: 0s; /* Adjusts timing to make movement look staggered */
 }
+
 .car2{
-    height: 250px;
-    width: 150px;
     background-image: url('assets/car2.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    display: inline-block;
-    /* background-color: cyan; */
-    margin: 0 160px;
+    left: 45%;
+    animation-delay: 1s;
 }
+
 .car3{
-    height: 250px;
-    width: 150px;
     background-image: url('assets/car3.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    display: inline-block;
-    /* background-color: cyan; */
+    left: 80%;
+    animation-delay: 2s;
+}
+
+.controls {
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* position: absolute; */
+    bottom: 20px;
+    padding: 0 10%;
+}
+
+@keyframes drive {
+    0% {
+        bottom: -250px;
+    }
+    100% {
+        bottom: 100vh;
+    }
+}
+
+.controls{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 80%;
+}
+.controls button{
+    padding: 20px;
+    border-radius: 100px;
+    font-size: larger;
+}
+
+.controls button:hover{
+    cursor: pointer;
+
+}
+
+.left-btn:hover~.raceTrack-background .car2 {
+    left: 30%; 
 }
