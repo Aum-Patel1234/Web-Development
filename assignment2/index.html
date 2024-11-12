@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>t</title>
+</head>
+
+<body>
+    <script>
+
+        const books = [
+            { name: "To Kill a Mockingbird", price: "924.00" },
+            { name: "The 48 Laws of Power", price: "755.31" },
+            { name: "The Great Gatsby", price: "1090.75" },
+            { name: "The Catcher in the Rye", price: "839.55" },
+            { name: "Pride and Prejudice", price: "670.75" },
+            { name: "The Alchemist", price: "1007.40" }
+        ];
+
+        const rentalOptions = [
+            { duration: "1 week", days: 7 },
+            { duration: "15 days", days: 15 },
+            { duration: "1 month", days: 30 }
+        ];
+
+        let prettyPrint = "*****************  WELCOME TO THE LIBRARY  *********************\n\n";
+
+        books.forEach((book, index) => {
+            prettyPrint += `${index + 1}. ${book.name} - Rs ${book.price}\n`;
+        });
+        prettyPrint += "7. Exit\n";
+
+        let totalBill = {};
+
+        let chosenIndex = -1;
+        while (chosenIndex != 7) {
+            chosenIndex = parseInt(prompt(`${prettyPrint}\nChoose the index number of the Book You want to issue ?`));
+
+            // If user cancels duration 
+            if (isNaN(chosenIndex)) {
+                continue;
+            }
+
+            while (chosenIndex <= 0 || chosenIndex > books.length + 1) {  // +1 for Exit option
+                chosenIndex = parseInt(prompt(`${prettyPrint}\nChoose the index number of the Book You want to issue ?`));
+                if (isNaN(chosenIndex)) {
+                    break;  // Break inner loop if user cancels
+                }
+            }
+
+            if (isNaN(chosenIndex)) {
+                continue;
+            }
+
+            if (chosenIndex === 7) {
+                let totalAmount = 0;
+                let billMessage = "*****************  FINAL BILL  *********************\n\n";
+
+                for (let bookName in totalBill) {
+                    const bookDetails = books.find(book => book.name === bookName);
+                    let price = parseFloat(bookDetails.price);
+
+                    if (totalBill[bookName] === 30) {
+                        price = price * 0.9;
+                    }
+
+                    totalAmount += price;
+                    billMessage += `Book: ${bookName}\n`;
+                    billMessage += `Duration: ${totalBill[bookName]} days\n`;
+                    billMessage += `Price: Rs ${price.toFixed(2)}\n\n`;
+                }
+
+                billMessage += `Total Amount: Rs ${totalAmount.toFixed(2)}`;
+                alert(billMessage);
+                console.log(billMessage);
+                alert("Thank You for visiting our Library! Have a great day!");
+                break;
+            }
+
+            let durationPrint = "\nChoose the number of days you want to issue the book (10% Discount if you issue the book for 1 month):\n";
+            rentalOptions.forEach((opt, index) => {
+                durationPrint += `${index + 1}. ${opt.duration}\n`;
+            });
+
+            let durationChoice = parseInt(prompt(`${durationPrint}\nEnter the number of your chosen duration:`));
+
+            if (isNaN(durationChoice)) {
+                continue;
+            }
+
+            durationChoice = ((durationChoice - 1) % rentalOptions.length + rentalOptions.length) % rentalOptions.length;
+
+            totalBill[books[chosenIndex - 1].name] = rentalOptions[durationChoice].days;
+        }
+
+    </script>
+</body>
+
+</html>
