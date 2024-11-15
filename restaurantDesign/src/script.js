@@ -43,30 +43,29 @@ const restaurantMenu = [
   }
 ];
 
-let items = document.querySelector(".items");
-
-restaurantMenu.forEach(menuItem => {
-  items.innerHTML += `
-        <div class="item-1 m-4 bg-cyan-800 rounded-3xl">
+// UI part js
+function buildItem(restaurantMenuItem, itemPrices, index) {
+  return `
+        <div class="item-${index} h-[300px] m-4 bg-cyan-800 rounded-3xl border-transparent hover:border-white hover:border-2 hover:scale-95 transform trasition duration-300 ease-in-out">
           <div class="img h-3/5 rounded-3xl">
-              <img src="${menuItem.image}" alt="item" class="object-cover w-full h-full rounded-t-3xl">
+              <img src="${restaurantMenuItem.image}" alt="item" class="object-cover w-full h-full rounded-t-3xl">
           </div>
 
           <div class="content p-4 h-2/5 flex flex-col justify-between">
-              <h2 class="text-lg font-semibold">${menuItem.name}</h2>
+              <h2 class="text-lg font-semibold">${restaurantMenuItem.name}</h2>
               
               <p class="text-sm truncate">
-                  ${menuItem.description}
+                  ${restaurantMenuItem.description}
               </p>
               
               <div class="flex justify-between items-center mt-2">
-                  <span class="text-lg font-bold">Rs ${menuItem.price}</span>
+                  <span class="text-lg font-bold">Rs ${restaurantMenuItem.price}</span>
                   <div class="no_of_items flex justify-between items-center w-2/5">
-                      <button id="sub" class="h-8 w-8 border-2 border-white rounded-md text-center font-bold flex items-center justify-center">
+                      <button id="sub${index}" class="h-6 w-6 border-2 border-white rounded-md text-center font-bold flex items-center justify-center">
                           -
                       </button>
-                      <span class="text-xl font-bold">0</span>
-                      <button id="add" class="h-8 w-8 border-2 border-white rounded-md text-center font-bold flex items-center justify-center">
+                      <span id="count${index}" class="text-xl font-bold">${itemPrices[index]}</span>
+                      <button id="add${index}" class="h-6 w-6 border-2 border-white rounded-md text-center font-bold flex items-center justify-center">
                           +
                       </button>
                   </div>
@@ -75,4 +74,111 @@ restaurantMenu.forEach(menuItem => {
           </div>
         </div>
     `;
-});
+}
+
+let itemsContainer = document.querySelector(".items");
+// let itemPrices = [];
+// itemPrices.length = 6;
+let itemPrices = Array(6).fill(0);
+
+for (let index = 0; index < restaurantMenu.length; index++) {
+  itemsContainer.innerHTML += buildItem(restaurantMenu[index], itemPrices, index);
+}
+
+// ------------------------------------------------------- -Event handling  ------------------------------------------------------------------------
+// eventHandler is an array which contains the array of different buttons
+
+for (let index = 0; index < restaurantMenu.length; index++) {
+  const countDisplay = document.querySelector(`#count${index}`);
+
+  // Add button
+  document.querySelector(`#add${index}`).addEventListener("click", () => {
+    itemPrices[index]++;
+    countDisplay.textContent = itemPrices[index];
+
+    const topRight = document.querySelector("#top");
+
+    if (!document.querySelector(`#bill-component-${index}`)) {
+      topRight.innerHTML += returnNewItemToCart(index);
+
+      const component = document.querySelector(`#bill-component-${index}`);
+      component.offsetHeight; // Trigger reflow
+
+      component.classList.remove("opacity-0", "scale-95", "invisible");
+      component.classList.add("opacity-100", "scale-100", "visible");
+    } else {
+      // Update existing item quantity
+      updateCart(index);
+    }
+
+    calCulateBill();
+    
+    document.querySelector("#bottom").classList.remove("invisible");
+  });
+
+  // Subtract button
+  document.querySelector(`#sub${index}`).addEventListener("click", () => {
+    const component = document.querySelector(`#bill-component-${index}`);
+
+    if (itemPrices[index] === 1) {
+      itemPrices[index] = 0;
+      component?.remove();
+      countDisplay.textContent = itemPrices[index];
+
+      let flag = false;
+      for (let i = 0; i < itemPrices.length; i++) {
+        if (itemPrices[i] > 0) 
+          flag = true;
+      }
+      if (!flag) {
+        document.querySelector("#bottom").classList.add("invisible");
+      }
+
+      return;
+    }
+
+    if (itemPrices[index] > 1) {
+      itemPrices[index]--;
+      countDisplay.textContent = itemPrices[index];
+      document.querySelector(`#no-of-${index}`).innerHTML = `&times; ${itemPrices[index]}`;
+    }
+
+    calCulateBill();
+  });
+}
+
+// construct bill and show the selected items in the right
+
+function updateCart(index) {
+  document.querySelector(`#no-of-${index}`).innerHTML = `&times; ${itemPrices[index]}`;
+}
+function returnNewItemToCart(index) {
+  return `
+    <div id="bill-component-${index}" class="bg-slate-600 h-12 rounded-xl flex items-center justify-between px-4 transition-transform duration-500 opacity-0 scale-95 invisible my-2">
+      <span>${restaurantMenu[index].name}</span>
+      <span id="no-of-${index}">&times; ${itemPrices[index]}</span>
+    </div>
+  `;
+}
+
+function calCulateBill() {
+  let subTotal = 0;
+  let gst = 0;
+
+  for (let index = 0; index < restaurantMenu.length; index++) {
+    if (itemPrices[index] > 0) {
+      const price = itemPrices[index] * restaurantMenu[index].price;
+      subTotal += price;
+      gst += (5 / 100) * price;
+    }
+  }
+
+  document.querySelector("#Subtotal").innerHTML = subTotal.toFixed(2);
+  document.querySelector("#GST").innerHTML = gst.toFixed(2);
+  document.querySelector("#Total").innerHTML = (subTotal + gst).toFixed(2);
+}
+
+document.querySelector("#buy").addEventListener("click",()=>{
+  alert("thanks");
+  location.reload();
+})
