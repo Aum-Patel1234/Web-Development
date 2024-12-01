@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Website</title>
+    <link rel="stylesheet" href="output.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="font-inter">
+    
+    <!-- fixed left-0 top-0 right-0  important -->
+    <nav class="h-20 p-5 md:px-24 py-5 flex justify-between fixed left-0 top-0 right-0 shadow-md bg-white">
+        <div class="font-bold font-sans text-2xl flex items-center">Personally</div>
+        <div class="flex w-[515px] justify-between items-center">
+            <div class="w-[318px] justify-between text-sm font-medium align-middle hidden md:flex ">
+                <div class="hover:cursor-pointer">Daily Digest</div>
+                <div class="hover:cursor-pointer">Design Tools</div>
+                <div class="hover:cursor-pointer">Tutorials</div>
+            </div> 
+            <button class="bg-black text-white p-3 text-center text-xs rounded-lg hidden md:block">Subscribe</button>
+        </div>
+        <div class="flex items-center justify-center md:hidden relative">
+            <img src="icons/Union.svg" alt="Union Icon" class="w-[25px] h-[15px] fill-[#1D2939]" />
+        </div>
+        
+    </nav>
+
+    <div class="mt-20 flex justify-center items-center h-[450px]">
+        <div class="w-[343px] h-[237px] text-center flex flex-col items-center justify-around md:w-[900px] md:h-[366px]">
+            <span class="text-xs px-4 py-3 bg-light-gray rounded-2xl font-semibold hover:cursor-pointer">👋 Meet Personally</span>
+            <div class="text-4xl gradient-text md:text-6xl font-bold font-sans">Minimal blog template for creative expressions</div>
+            <div class="text-xl w-[690px] md:text-2xl">100% customisable and SEO-friendly blog template for personal and commercial purposes.</div>
+        </div>
+    </div>
+
+    <div class="bg-light-gray p-20">
+        <div class="max-w-[980px] mx-auto w-full flex flex-col gap-y-4">
+            <div class="flex justify-between">
+                <input class="rounded pl-4 text-gray-400" title="Search" type="text" placeholder="Search">
+                <div class="px-4 py-3 bg-white font-semibold text-sm rounded hover:cursor-pointer">Select Category</div>
+            </div>
+            <!-- cards -->
+            <div class="cards flex flex-col gap-y-4"> 
+                
+                
+            </div>
+        </div>
+    </div>
+    
+    <footer class="flex justify-center items-center bg-white text-center p-14">
+        <div class="max-w-[472px] h-48 rounded-lg flex flex-col justify-around items-center">
+            <div class="font-bold gradient-text text-3xl">Personally Newsletter</div>
+            <div class="font-semibold">A bi-weekly newsletter of design inspiration, resources and anything related to career development.</div>
+            <div class="flex h-12 w-[400px] justify-center rounded-lg">
+                <input class="rounded-l-lg p-4 border-2" placeholder="Email Address" title="email" type="text">
+                <button class="bg-black w-[136px] text-white p-3 text-center text-xs rounded-r-lg">Subscribe</button>
+            </div>
+        </div>
+    </footer>
+
+    <div class="h-[100px] flex justify-center items-center shadow-2xl">
+        <div class="font-normal text-xs">Copyright 2021 - Elikem Daniels</div>
+    </div>
+
+    <script>
+        const link0 = "https://s3-alpha-sig.figma.com/img/2f17/6a47/08f548b52cae3eb21b723a5604bdc411?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=M7K3Gt0Du~16v5RTjHFcfuSpMenryLQyO7vDod0HMRfzzvOKkAoXF~qC55Jz4W22m24~PHxWmMRzuAJqZ-GrZeTeo7SJ7sgsqMuwq1Cy7hkEhaamiSy64Zd~dCEuWj2RYCR90~F2P16A9j7UVuq9fmLLPexQ739eehyBEUmfySZlYhDjDvjktWcp8sQl4KKbtAdovUUmaxx2eyTe0wnJG2D9QdFXflau5kBzNaqHPEJHw4IMW4mLv49BUz~3uSfNdm4z3Rdi0HO76afNpMiOEdw9leOtBjupa21VFjfOXCwTPc3IRwaY2Wlmb6Zkqt7eGmDU8jELkJ5e-ksVOCsJHw__";
+
+        const link1 = "https://s3-alpha-sig.figma.com/img/2e7a/339a/0d18c56f81997eb32e7ccea5b9e4f532?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=hj4PmCrXxeCvGb6cXreUHosSpzI49Ge~pcyhrlia05XtyqXCfgZOYEe5X4dfHwCxdLLts0z7ruG9sNSXXyPewFw5bBMEj4blPi4K2GyzZXXStxl3uywfQJy1l92ykcNfVumxCCFPF83oU9zyF57JN91Fk7QTgtk5aDIDTX0wwXT68jsJSJkYEakw0Lyw~fiYnTBboqMCNieq6VxG6ivVG1SwtK-0deYBnKogaQiNfHV8CNv0q~hfYWeccZZrY3bYV8xJwU3kB4AsbPsFuWX~CPo0Hw2V7hjUWDb1SRLEsehBuk-NjFuLM0wd-~8OfORb3CHEhVuBp20mC7XyPGYFyw__";
+
+        const link2 = "https://s3-alpha-sig.figma.com/img/2cce/a563/a7cd06782d54cc5dd625e5ff9bf0d569?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=fb86ySG9c79Jklf30TfA~W16EjgxfD~CQa5hYqmpYGq8VtzOywFUSD8t6W93Ha7aeh3XH1F3QuO1x03~yLM6-2hd4UY99DiDeYaq-U0CnxpLEDH~8ABP8ZnwR2gRpD84foNycYiy8021IGHEnYXfvmrQXp2FZMZ3ZdVTleTqkTpXTyDkgOrfBd3TTn7K5DkVNhl7r9BHa6oSjvfGcSVlu3MqdI4l2sqDflmOofM2pYw~HHaC5Zac61qkW4edXwdnnNmVYvtGl9R0kGiuDck3gL-zCPNJC5Sx-FFKWJdKc6oxM54VDw2MNmq22m9V~TCixJIwpe1OBIvZ915mbfOCtQ__";
+
+        // let num = parseInt(Math.random()*3);
+        // console.log(num);
+        let links = [link0,link1,link2];
+        
+        for (let i = 0; i < 8; i++) {
+                let element = document.querySelector(".cards");
+                // Randomly select a link from a set of image URLs
+                let link = links[Math.floor(Math.random() * links.length)];
+                console.log(link);
+
+                element.innerHTML += `<div class="h-[260px] flex justify-around items-center rounded-2xl bg-white">
+                    <div class="w-[610px] h-[178px] flex flex-col gap-y-7">
+                        <div class="font-normal text-xs">AUGUST 13, 2021</div>
+                        <div class="flex flex-col gap-y-2">
+                            <div class="font-semibold text-2xl font-sans">
+                                10 Hilarious Cartoons That Depict Real-Life Problems of Programmers
+                            </div>
+                            <div class="font-medium font-sans">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque rerum quis optio quod accusantium dolorum perferendis.
+                            </div>
+                        </div>
+                    </div>
+                    <img class="w-[300px] h-52 rounded" src="${link}" alt="img">
+                </div>`;
+            }
+
+    </script>
+</body>
+
+</html>
