@@ -1,97 +1,95 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restaurant Website</title>
-    <link rel="stylesheet" href="output.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Shop</title>
+    <link rel="icon" type="image/x-icon" href="icons/shopIcon.png">
+    <!-- Credits - <a href="https://www.flaticon.com/free-icons/shopping-bag" title="shopping bag icons">Shopping bag icons created by Icon Mela - Flaticon</a> -->
+    <link rel="stylesheet" href="output.css" />
     <style>
-        .webkit-invisible::-webkit-scrollbar {
-            display: none;
-        }
+      .webkit-invisible::-webkit-scrollbar {
+        position: relative;
+        z-index: 20;
+        width: 8px; /* Set the width of the scrollbar */
+      }
+      .webkit-invisible::-webkit-scrollbar-thumb {
+        background-color: lightgray; /* Set the color of the scrollbar handle */
+        z-index: 20;
+        position: relative;
+        border-radius: 4px; /* Optional: to make the thumb rounded */
+      }
+      .webkit-invisible::-webkit-scrollbar-track {
+        background-color: invisible; /* Set the background color of the track */
+      }
     </style>
-</head>
+    <!-- any change you want to make in this website remember that card has a z-10 index so try to put the things that we want in front higher -->
+    <!-- z index of search, shoMore and the tiltle ie Aums Shop has been kept higher  -->
+  </head>
 
-<body class="p-0 m-0 text-white bg-gradient-to-r from-gray-900 via-gray-800 to-blue-900 h-lvh overflow-hidden">
+  <body class="p-0 m-0 text-white bg-gradient-to-r from-gray-900 via-gray-800 to-blue-900 h-lvh overflow-hidden">
     <!-- overflow hidden helps to use only the available width i.e the scrolling is not allowed -->
 
     <div id="globalEventListner" class="main p-4 flex w-full sm:aspect-3/1 h-full">
+      <!-- products card and show more have same z index -->
+      <div class="absolute flex justify-center items-center w-full h-full">
+        <div id="cardInfo" class="w-3/4 h-4/5 border rounded-3xl bg-teal-800 hidden z-10 pointer-events-none absolute">
+          <!-- Content Inside cardInfo -->
+          <div id="productCard" class="p-6 h-full flex flex-col"></div>
+        </div>
+      </div>
 
-        <!-- products card and show more have same z index -->
-        <div class="absolute flex justify-center items-center w-full h-full">
-            <div id="cardInfo" class="w-3/4 h-4/5 border rounded-3xl bg-teal-800 hidden z-10 pointer-events-none absolute ">
-
-                <!-- Content Inside cardInfo -->
-                <div id="productCard" class="p-6 h-full flex flex-col">
-                    
-                </div>
-
-            </div>
+      <div class="left w-3/4 max-sm:w-full h-full">
+        <!-- navbar -->
+        <div class="left-nav flex justify-between mt-2">
+          <a href="/" class="font-bold italic text-3xl hover:cursor-pointer z-20">
+            <h1>Aum's Shop</h1>
+          </a>
+          <form action="search" class="flex items-center bg-gray-800 bg-opacity-60 border border-gray-600 rounded-lg max-sm:hidden z-20">
+            <input type="text" name="Search" id="search" placeholder="Search" class="p-2 bg-transparent" />
+            <img src="icons/search.png" alt="search" draggable="false" class="h-4 w-4 mr-2" />
+          </form>
         </div>
 
-        <div class="left w-3/4 max-sm:w-full">
-
-            <!-- navbar -->
-            <div class="left-nav flex justify-between">
-                <h1 class="font-bold italic text-3xl">Aum's Shop</h1>
-                <form action="search" class="flex items-center bg-gray-800 bg-opacity-60 border border-gray-600 rounded-lg max-sm:hidden z-20">
-                    <input type="text" name="Search" id="search" placeholder="Search" class="p-2 bg-transparent">
-                    <img src="icons/search.png" alt="search" draggable="false" class="h-4 w-4 mr-2">
-                </form>
-            </div>
-
-            <!-- menu -->
-            <div class="webkit-invisible h-full w-full overflow-y-auto pb-10">
-                <!-- menu items here             -->
-                <div class="items grid grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1  pb-10">
-
-                </div>
-                <div class="w-full flex items-center justify-center">
-                    <button id="showMore" class="p-4 z-10 m-4 border  rounded-lg">Show More</button>
-                </div>
-            </div>
-
+        <!-- menu -->
+        <div class="webkit-invisible h-full w-full overflow-y-auto pb-10">
+          <!-- menu items here -->
+          <div class="items grid grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 pb-10 w-full"></div>
+          <div class="w-full flex items-center justify-center">
+            <button id="showMore" class="p-4 z-10 m-4 border rounded-lg">Show More</button>
+          </div>
         </div>
+      </div>
 
-        <div class="right w-1/4 h-full p-4 max-sm:w-0 max-sm:hidden">
+      <div class="right w-1/4 h-full p-4 max-sm:w-0 max-sm:hidden">
+        <div class="bill h-full w-full rounded-2xl bg-gray-800 relative">
+          <div id="top" class="m-4 h-3/4 overflow-y-auto webkit-invisible">
+            <!-- to show items selected here -->
+          </div>
 
-            <div class="bill h-full w-full rounded-2xl bg-gray-800 relative">
-
-                <div id="top" class="m-4 h-3/4 overflow-y-auto webkit-invisible">
-                    <!-- to show items selected here -->
-
-                </div>
-
-                <div id="bottom" class="p-4 absolute bottom-0 w-full invisible">
-                    <!-- to show bill here  -->
-                    <div class="p-1 flex justify-between">
-                        <span class="font-mono">Subtotal(in $)</span>
-                        <span id="Subtotal"></span>
-                    </div>
-                    <div class="flex justify-between pb-2 px-1">
-                        <span class="font-mono">GST(5%)</span>
-                        <span id="GST"></span>
-                    </div>
-                    <hr>
-                    <div class="px-1 py-2 flex justify-between">
-                        <span class="font-mono">Total Bill(in $)</span>
-                        <span id="Total"></span>
-                    </div>
-
-                    <button id="buy"
-                        class="font-mono text-2xl w-full bg-white text-black font-bold py-1 rounded-3xl">Buy
-                        Now</button>
-                </div>
+          <div id="bottom" class="p-4 absolute bottom-0 w-full invisible">
+            <!-- to show bill here -->
+            <div class="p-1 flex justify-between">
+              <span class="font-mono">Subtotal(in $)</span>
+              <span id="Subtotal"></span>
+            </div>
+            <div class="flex justify-between pb-2 px-1">
+              <span class="font-mono">GST(18%)</span>
+              <span id="GST"></span>
+            </div>
+            <hr />
+            <div class="px-1 py-2 flex justify-between">
+              <span class="font-mono">Total Bill(in $)</span>
+              <span id="Total"></span>
             </div>
 
+            <button id="buy" class="font-mono text-2xl w-full bg-white text-black font-bold py-1 rounded-3xl">Buy Now</button>
+          </div>
         </div>
-
-
-
+      </div>
     </div>
 
     <script type="module" src="js/script.js"></script>
-</body>
-
+    <!-- <script src="js/search.js"></script> -->
+  </body>
 </html>

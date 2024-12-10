@@ -1,6 +1,6 @@
-function makeCard(product){
-    // console.log(product);
-    return `
+function makeCard(product) {
+  // console.log(product);
+  return `
         <div class="flex justify-between items-center mb-4">
             <h1 class="text-2xl font-bold">${product.title}</h1>
             <span class="text-teal-800 px-4 py-1 rounded-lg font-semibold">
@@ -58,16 +58,16 @@ function makeCard(product){
 }
 
 function makeReview(reviews) {
-    console.log(reviews);
-    let str = '';
-    for(let review of reviews){
-        str += `
+  console.log(reviews);
+  let str = "";
+  for (let review of reviews) {
+    str += `
             <li class="bg-teal-700 p-2 rounded-md">
-                <strong>${review.reviewerName}:</strong> ${review.comment} ${'⭐'.repeat(review.rating)}
+                <strong>${review.reviewerName}:</strong> ${review.comment} ${"⭐".repeat(review.rating)}
             </li>
         `;
-    }
-    return str;
+  }
+  return str;
 }
 
 export default makeCard;
