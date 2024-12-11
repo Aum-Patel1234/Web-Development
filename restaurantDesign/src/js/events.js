@@ -1,5 +1,6 @@
 export function updateCart(index, quantity, productTitle) {
   const existingCartItem = document.querySelector(`#bill-component-${index}`);
+  console.log(index, "updateCart", existingCartItem);
 
   if (quantity > 0) {
     if (!existingCartItem) {
@@ -48,5 +49,3 @@ export function calculateBill() {
   document.querySelector("#GST").textContent = gst.toFixed(2);
   document.querySelector("#Total").textContent = (subTotal + gst).toFixed(2);
 }
-
-// export default { calculateBill , updateCart };       error

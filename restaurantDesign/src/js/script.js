@@ -1,9 +1,9 @@
 "use strict";
 
-import { fetchAPIData, allProducts } from "./service.js";
+import { fetchAPIData, allProducts, fetchCategories } from "./service.js";
 import { calculateBill, updateCart } from "./events.js";
 import { buildItem } from "./service.js";
-import makeCard from "./product_card.js";
+import { makeCard, scrollCardImages } from "./product_card.js";
 
 function debounce(callBackfn) {
   let timeout;
@@ -64,7 +64,7 @@ searchElement.addEventListener(
 
 // Call the fetchData function to load items
 async function getData() {
-  await fetchAPIData(21, 0);
+  await fetchAPIData(20, 0);
 }
 
 getData();
@@ -72,6 +72,7 @@ getData();
 const cardInfo = document.getElementById("cardInfo");
 function showCardInfo(product) {
   document.querySelector("#productCard").innerHTML = makeCard(product);
+  scrollCardImages(product.images);
   cardInfo.classList.remove("hidden", "pointer-events-none");
   cardInfo.classList.add("pointer-events-auto");
   // console.log(product);
@@ -83,69 +84,74 @@ function hideCardInfo() {
 }
 
 // Event delegation for add and subtract buttons
-document
-  .querySelector("#globalEventListner")
-  .addEventListener("click", async (event) => {
-    const target = event.target;
-    const idParts = target.id.split("-");
-    // console.log("clicked",target);
+document.querySelector("#globalEventListner").addEventListener("click", async (event) => {
+  const target = event.target;
+  const idParts = target.id.split("-");
+  // console.log("clicked",target);
 
-    if (idParts.length !== 2) {
-      // error occurs when other things are clicked and the event below occurs
-      if (target.id == "showMore") {
-        console.log("clicked");
-        let items = document.querySelector(".items");
-        const showMore = document.querySelector("#search");
+  if (idParts.length !== 2) {
+    // error occurs when other things are clicked and the event below occurs
+    if (target.id == "showMore") {
+      console.log("clicked");
+      let items = document.querySelector(".items");
+      const showMore = document.querySelector("#search");
 
-        if (showMore.value != "") {
-          await search(
-            document.querySelector("#search").value,
-            12,
-            items.childNodes.length,
-          );
-        } else {
-          await fetchAPIData(15, items.childNodes.length);
-        }
+      if (showMore.value != "") {
+        await search(
+          document.querySelector("#search").value,
+          12,
+          items.childNodes.length,
+        );
+      } else {
+        await fetchAPIData(12, items.childNodes.length);
       }
-      if (!target.id.includes("cardInfo")) {
-        hideCardInfo();
-      }
-
-      return; // I M P O R T A N T
+    }
+    if (target.id == "categoriesBtn") {
+      const categories = document.querySelector("#categories");
+      categories.classList.toggle("left-sliderOut");
+      fetchCategories();
+    }
+    if (!target.id.includes("cardInfo")) {
+      hideCardInfo();
     }
 
-    const action = idParts[0];
-    const index = idParts[1];
-    const countDisplay = document.querySelector(`#count-${index}`);
-    let currentCount = parseInt(countDisplay.textContent, 10);
+    return; // I M P O R T A N T
+  }
 
-    if (action === "add") {
-      currentCount += 1;
-    } else if (action === "sub" && currentCount > 0) {
-      currentCount -= 1;
-    } else if (action === "title" || action === "img") {
-      showCardInfo(allProducts[index]);
-    } else {
-      return;
-    }
+  const action = idParts[0];
+  const index = idParts[1];
+  const countDisplay = document.querySelector(`#count-${index}`);
+  let currentCount = parseInt(countDisplay.textContent);
 
-    countDisplay.textContent = currentCount; // display the count
+  if (action === "add" || action === "addToCart") {
+    currentCount += 1;
+  } else if (action === "sub" && currentCount > 0) {
+    currentCount -= 1;
+  } else if (action === "title" || action === "img") {
+    showCardInfo(allProducts[index]);
+  } else {
+    return;
+  }
 
-    const productTitle = document.querySelector(
-      `#item-${index} #title-${index}`,
-    ).textContent;
-    // console.log(productTitle)
-    updateCart(index, currentCount, productTitle);
+  countDisplay.textContent = currentCount; // display the count
 
-    // Show or hide the bill container
-    if (document.querySelector("#top").children.length > 0) {
-      document.querySelector("#bottom").classList.remove("invisible");
-    } else {
-      document.querySelector("#bottom").classList.add("invisible");
-    }
+  const productTitle = document.querySelector(
+    `#item-${index} #title-${index}`,
+  ).textContent;
+  // console.log(productTitle)
+  updateCart(index, currentCount, productTitle);
 
-    calculateBill();
-  });
+  // Show or hide the bill container
+  if (document.querySelector("#top").children.length > 0) {
+    document.querySelector("#bottom").classList.remove("invisible");
+  } else {
+    document.querySelector("#bottom").classList.add("invisible");
+  }
+
+  calculateBill();
+});
+
+// Add Categories to the website
 
 // Final purchase event
 document.querySelector("#buy").addEventListener("click", () => {
