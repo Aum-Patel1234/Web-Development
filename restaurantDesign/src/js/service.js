@@ -4,7 +4,7 @@ export function buildItem(product) {
   const index = product.id;
 
   return `
-      <div id="item-${index}" class="h-[475px] m-4 bgBlack rounded-3xl border-transparent hover:border-white hover:border-2 hover:scale-95 hover:cursor-pointer transform transition duration-300 ease-in-out">
+      <div id="item-${index}" class="h-[475px] m-4 card-dark rounded-3xl border-transparent hover:border-white hover:border-2 hover:scale-95 hover:cursor-pointer transform transition duration-300 ease-in-out">
         <div class="img h-3/4 rounded-3xl">
           <img id="img-${index}" src="${product.thumbnail}" alt="item" class="object-contain w-full h-full rounded-t-3xl">
         </div>
@@ -55,23 +55,35 @@ async function fetchCategories(){
     .then((res) => res.json())
     .then((categories) =>{
       const categoriesDiv = document.querySelector("#categories"); 
+      let firstElement = document.createElement("div");
+      firstElement.classList = "flex h-16 w-full items-center justify-center font-bold text-3xl text-white bg-gray-400 rounded-t-lg shadow-lg";
+      firstElement.innerHTML = "Categories";
+      categoriesDiv.appendChild(firstElement);
       
-      categories.forEach((category,i) => {
-        // console.log(category, categories);
+      
+      categories.forEach((category, i) => {
         let element = document.createElement("div");
         element.id = `category-${category.id}`;
-        element.classList = `h-10 flex px-2 py-6 items-center hover:bg-gray-700`;
+        element.classList = `h-12 flex px-4 py-4 items-center rounded-lg  light-light-dark-hover hover:cursor-pointer transition duration-200 ease-in-out`;
+        
+        // Alternating background colors for better readability
+        // element.style.backgroundColor = i % 2 === 0 ? "#2D2D2D" : "bg-red-300";
+      
         element.innerHTML = `
-          <span class="text-gray-400 mr-4">${i+1}</span>
-          <span>${category.name}</span>
+          <span class="text-gray-400 mr-4 font-semibold">${i + 1}</span>
+          <span class="text-white">${category.name}</span>
         `; 
+      
         let hr = document.createElement("hr");
+        hr.classList.add("border-gray-600");
         categoriesDiv.appendChild(element);
         categoriesDiv.appendChild(hr);
       });
-
-      categoriesDiv.removeChild(categoriesDiv.lastChild); 
-      categoriesDiv.lastElementChild.classList.add("mb-4")
+      
+      // Remove the last horizontal line and add margin bottom
+      categoriesDiv.removeChild(categoriesDiv.lastChild);
+      categoriesDiv.lastElementChild.classList.add("mb-4");
+      
     })
   }catch(e){
     console.log(e);

@@ -1,7 +1,7 @@
 "use strict";
 
 import { fetchAPIData, allProducts, fetchCategories } from "./service.js";
-import { calculateBill, updateCart } from "./events.js";
+import { calculateBill, updateCart, updateCartIndex } from "./events.js";
 import { buildItem } from "./service.js";
 import { makeCard, scrollCardImages } from "./product_card.js";
 
@@ -110,6 +110,10 @@ document.querySelector("#globalEventListner").addEventListener("click", async (e
       const categories = document.querySelector("#categories");
       categories.classList.toggle("left-sliderOut");
       fetchCategories();
+    }else{
+      if (document.querySelector("#categories")?.classList.contains("left-sliderOut")) {
+        document.querySelector("#categories").classList.remove("left-sliderOut");
+      }
     }
     if (!target.id.includes("cardInfo")) {
       hideCardInfo();
@@ -130,16 +134,21 @@ document.querySelector("#globalEventListner").addEventListener("click", async (e
   } else if (action === "title" || action === "img") {
     showCardInfo(allProducts[index]);
   } else {
+    if(action == "deleteBillComponent"){
+      console.log('here',action)
+      document.querySelector(`#bill-component-${index}`).remove();
+      document.querySelector(`#count-${index}`).textContent = 0;
+      calculateBill();
+      updateCartIndex();
+    }
     return;
   }
 
   countDisplay.textContent = currentCount; // display the count
 
-  const productTitle = document.querySelector(
-    `#item-${index} #title-${index}`,
-  ).textContent;
+  const productTitle = document.querySelector(`#item-${index} #title-${index}`,).textContent;
   // console.log(productTitle)
-  updateCart(index, currentCount, productTitle);
+  updateCart(index, currentCount, productTitle, allProducts[index].price);
 
   // Show or hide the bill container
   if (document.querySelector("#top").children.length > 0) {

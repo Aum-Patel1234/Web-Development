@@ -62,7 +62,7 @@ function makeReview(reviews) {
   let str = "";
   for (let review of reviews) {
     str += `
-            <li class="bg-gray-700 p-2 rounded-md">
+            <li class="light-light-dark p-2 rounded-md">
                 <strong>${review.reviewerName}:</strong> ${review.comment} ${"⭐".repeat(review.rating)}
             </li>
         `;
