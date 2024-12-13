@@ -29,11 +29,11 @@
         <div>
           <div class="left-nav flex justify-between mt-2">
             <div class="flex justify-center items-center">
-              <button id="categoriesBtn" class="hover:cursor-pointer z-20">
+              <button id="categoriesBtn" class="hover:cursor-pointer z-20">         
                 <div id="categoriesBtn" class="flex flex-col justify-between w-6 h-5 m-4 cursor-pointer hover:cursor-pointer" >
-                  <div class="h-1 bg-white rounded"></div>
-                  <div class="h-1 bg-white rounded"></div>
-                  <div class="h-1 bg-white rounded"></div>
+                  <div id="categoriesBtn" class="h-1 bg-white rounded"></div>
+                  <div id="categoriesBtn" class="h-1 bg-white rounded"></div>       <!-- I have added id so many times because of event delegation -->
+                  <div id="categoriesBtn" class="h-1 bg-white rounded"></div>
                 </div>  
               </button>
               <a  href="/" class="font-bold font-mono text-3xl hover:cursor-pointer z-20">
@@ -49,8 +49,8 @@
           <div id="categories" class="absolute w-80  bg-gradient-to-b card-dark h-95 z-20 left-slider overflow-y-auto p-4 mb-4 webkit-invisible"></div>
         </div>
 
-        <!-- menu -->
-        <div class="webkit-invisible h-full w-full overflow-y-auto pb-10">
+        <!-- menu added relative just to warn if ui breaks in future -->
+        <div class="webkit-invisible relative h-full w-full overflow-y-auto pb-10">
           <!-- menu items here -->
           <div class="items grid grid-cols-4 max-md:grid-cols-2 max-sm:grid-cols-1 pb-10 w-full"></div>
           <div class="w-full flex items-center justify-center">
@@ -62,8 +62,9 @@
       </div>
 
       <div class="right w-1/4 h-full p-4 max-sm:w-0 max-sm:hidden">
-        <div class="m-2 font-mono font-bold text-3xl">
-          Cart
+        <div class="m-2 flex justify-between items-center">
+          <span class="font-mono font-bold text-3xl">Cart</span>
+          <a class="z-20 hover:cursor-pointer" href="https://github.com/Aum-Patel1234/Web-Development/tree/master/restaurantDesign" target="_blank"><img class="h-9 hover:cursor-pointer" src="/icons/github-mark-white.png" alt="" srcset=""></a>
         </div>
         <div class="bill h-95 w-full rounded-2xl card-dark relative">
           <div id="top" class="m-4 h-3/4 overflow-y-auto webkit-invisible">

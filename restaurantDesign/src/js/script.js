@@ -24,21 +24,26 @@ const searchElement = document.querySelector("#search");
 
 async function search(query, limit = 12, skip = 0) {
   const itemsContainer = document.querySelector(".items");
+  const showMore = document.querySelector("#showMore");
 
   if(query == ""){
     itemsContainer.innerHTML = "";
     fetchAPIData(20,0,`https://dummyjson.com/products/`);
     currentDataLink = "https://dummyjson.com/products"; 
     itemsContainer.classList.add("grid");
+    showMore.classList.remove("hidden");
     return;
   }
 
   // Update state and handle UI
   if (currentDataLink !== `https://dummyjson.com/products/search?q=${query}`) {
-    itemsContainer.innerHTML = "<p>Loading...</p>";
+    itemsContainer.innerHTML = `
+      <div class="absolute top-1/2 right-1/2">
+        <span class="loader top-1/2 left-1/2"></span>
+      </div>
+    `;
   }
 
-  const showMore = document.querySelector("#showMore");
   if (showMore.classList.contains("hidden")) {
     showMore.classList.remove("hidden");
   }
@@ -56,12 +61,15 @@ async function search(query, limit = 12, skip = 0) {
     }
 
     if (data.products.length === 0) {
-      itemsContainer.innerHTML = `<div class=\"w-full h-full flex justify-center items-center\">No results found.</div>`;
+      itemsContainer.innerHTML = `
+      <div class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        <img src="https://imgs.search.brave.com/_vzUlnYtwANWOkGZIEmdDscatbYLg2wKRp2KnqGyDQs/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vdk9fVFli/S0UwTkVCT1UwSG5n/b1hXVzFRa0drdGxk/eWRjU0RLRXFvVUtE/US9yczpmaXQ6NTYw/OjMyMDoxOjAvZzpj/ZS9hSFIwY0hNNkx5/OXBiV2N1L1puSmxa/WEJwYXk1amIyMHYv/Y0hKbGJXbDFiUzEy/WldOMC9iM0l2Ym04/dFpHRjBZUzFtL2Iz/VnVaQzFsYlhCMGVT/MW0vYVd4bExXWnZi/R1JsY2kxai9iMjVq/WlhCMExXUmxjMmxu/L2JpMTJaV04wYjNJ/dGFXeHMvZFhOMGNt/RjBhVzl1WHpZeS9N/RFU0TlMweE5qazRM/bXB3L1p6OXpaVzEw/UFdGcGMxOW8vZVdK/eWFXUQ.jpeg" alt="">
+      </div>`;
       itemsContainer.classList.remove("grid");
       showMore.classList.add("hidden");
-      currentDataLink = "https://dummyjson.com/products/noResults";
+      currentDataLink = "https://dummyjson.com/products/";
     } else {
-      if (currentDataLink === "https://dummyjson.com/products/noResults") {
+      if (currentDataLink === "https://dummyjson.com/products/") {
         itemsContainer.innerHTML = "";
       }
       itemsContainer.classList.add("grid");
@@ -73,6 +81,7 @@ async function search(query, limit = 12, skip = 0) {
       });
       currentDataLink = `https://dummyjson.com/products/search?q=${query}`;
     }
+
   } catch (error) {
     console.error("Error fetching search results:", error);
     itemsContainer.innerHTML = "<p>Error loading results. Please try again.</p>";
