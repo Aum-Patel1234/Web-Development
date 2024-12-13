@@ -27,12 +27,34 @@ export function buildItem(product) {
 let allProducts = {};
 
 // Fetch and display data
-async function fetchAPIData(limit, skip) {
+// async function fetchAPIData(limit, skip) {
+//   try {
+//     const response = await fetch(
+//       `https://dummyjson.com/products?limit=${limit}&skip=${skip}`,
+//     );
+//     const data = await response.json();
+
+//     const itemsContainer = document.querySelector(".items");
+
+//     // Render items dynamically
+//     data.products.forEach((product) => {
+//       // data.forEach((product) => {
+//       const itemDOM = document.createElement("div");
+//       allProducts[product.id] = product;
+//       itemDOM.innerHTML = buildItem(product);
+//       itemsContainer.appendChild(itemDOM);
+//     });
+//   } catch (e) {
+//     console.log(e);
+//   }
+// }
+async function fetchAPIData(limit, skip, endpoint) {
   try {
     const response = await fetch(
-      `https://dummyjson.com/products?limit=${limit}&skip=${skip}`,
+      `${endpoint}?limit=${limit}&skip=${skip}`,
     );
     const data = await response.json();
+    console.log(data);  
 
     const itemsContainer = document.querySelector(".items");
 
@@ -49,9 +71,13 @@ async function fetchAPIData(limit, skip) {
   }
 }
 
+let callCategoriesApi = true;        // when the user reloads multiple times multiple requests are gone to the server so declaring a boolean flag
 async function fetchCategories(){
   try{
-    fetch('https://dummyjson.com/products/categories')
+    if(!callCategoriesApi){
+      return;
+    }
+    fetch('https://dummyjson.com/products/category-list')
     .then((res) => res.json())
     .then((categories) =>{
       const categoriesDiv = document.querySelector("#categories"); 
@@ -62,16 +88,15 @@ async function fetchCategories(){
       
       
       categories.forEach((category, i) => {
+        // console.log(category)
         let element = document.createElement("div");
-        element.id = `category-${category.id}`;
+        element.id = `category-${category}`;
         element.classList = `h-12 flex px-4 py-4 items-center rounded-lg  light-light-dark-hover hover:cursor-pointer transition duration-200 ease-in-out`;
         
-        // Alternating background colors for better readability
-        // element.style.backgroundColor = i % 2 === 0 ? "#2D2D2D" : "bg-red-300";
-      
+        category = category.charAt(0).toUpperCase() + category.slice(1);
         element.innerHTML = `
-          <span class="text-gray-400 mr-4 font-semibold">${i + 1}</span>
-          <span class="text-white">${category.name}</span>
+          <span id="${element.id}" class="text-gray-400 mr-4 font-semibold">${i + 1}</span>
+          <span id="${element.id}" >${category}</span>
         `; 
       
         let hr = document.createElement("hr");
@@ -80,10 +105,10 @@ async function fetchCategories(){
         categoriesDiv.appendChild(hr);
       });
       
-      // Remove the last horizontal line and add margin bottom
       categoriesDiv.removeChild(categoriesDiv.lastChild);
       categoriesDiv.lastElementChild.classList.add("mb-4");
-      
+
+      callCategoriesApi = false;
     })
   }catch(e){
     console.log(e);
