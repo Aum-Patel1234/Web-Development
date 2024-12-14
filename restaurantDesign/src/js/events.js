@@ -1,5 +1,3 @@
-
-
 export function updateCart(index, quantity, productTitle, price) {
   const existingCartItem = document.querySelector(`#bill-component-${index}`);
   // console.log(index, "updateCart", existingCartItem);
@@ -15,7 +13,7 @@ export function updateCart(index, quantity, productTitle, price) {
       billComponent.innerHTML = `
         <div class="flex items-center">
           <span id="cartIndex-${index}" class="flex w-8 h-8 justify-center items-center bg-white rounded-full text-black mr-2 text-xl"></span>
-          <span class="truncate max-w-44">${productTitle}&nbsp;</span>  
+          <span class="truncate max-w-32">${productTitle}&nbsp;</span>  
           <span id="no-of-${index}">&times; ${quantity}</span>
         </div>
         <div class="w-8 flex justify-end items-center">

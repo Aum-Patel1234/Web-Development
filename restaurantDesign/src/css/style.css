@@ -105,3 +105,9 @@
 .h-95{
   height: 95%;
 }
+
+.cardHeight{
+  /* min-height: 175px;
+  max-height: 200px; */
+  height: 275px;
+}

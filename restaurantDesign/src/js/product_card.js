@@ -11,10 +11,11 @@ function makeCard(product) {
         <!-- Product Image and Details -->
         <div class="flex flex-1">
             <!-- Product Image -->
-            <div id="cardImages" class="relative w-1/3 flex flex-row h-[400px]">
+            <div class="w-1/3 flex flex-row justify-center items-center">
+              <div id="cardImages" class="cardHeight">
 
+              </div>
             </div>
-
             <!-- Product Details -->
             <div class="w-2/3 px-4 flex flex-col justify-around relative">
                 <p class=" mb-2">
@@ -47,7 +48,7 @@ function makeCard(product) {
 
         <!-- Footer Actions -->
         <div class="mt-4 flex justify-end space-x-4"> 
-            <button class="bg-gradient-to-r from-pink-500 to-purple-500 text-white py-3 px-8 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+            <button class="bg-gradient-to-r from-pink-500 to-purple-500 text-white py-2 px-6 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
               💸 Discount - ${product.discountPercentage}%
             </button>
             <button id="addToCart-${product.id}" class="bg-white text-black py-2 px-6 rounded-lg font-semibold shadow hover:bg-gray-300">
@@ -75,13 +76,13 @@ function scrollCardImages(images) {
   const cardImages = document.querySelector("#cardImages");
 
   if (images.length == 1) {
-    cardImages.innerHTML = `<img src="${images[0]}" alt="img" class="w-full rounded-lg shadow h-[400px] object-contain"/>`;
+    cardImages.innerHTML = `<img src="${images[0]}" alt="img" class="w-full rounded-lg shadow cardHeight object-contain"/>`;
     return;
   }
 
   let i = 0; // index to handle index of the images
   const updateImage = () => {
-    cardImages.innerHTML = `<img src="${images[i]}" alt="img" class="image-slide w-full rounded-lg shadow h-[400px] object-contain"/>`;
+    cardImages.innerHTML = `<img src="${images[i]}" alt="img" class="image-slide w-full rounded-lg shadow cardHeight object-contain"/>`;
 
     const img = cardImages.querySelector(".image-slide");
 
